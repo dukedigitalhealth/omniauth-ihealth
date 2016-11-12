@@ -1,24 +1,23 @@
-## This project is no longer actively maintained, and may be out of date with the iHealth API
-
 # Omniauth Strategy for iHealth
-This is a strategy to connect with iHealth using Ommniauth and OAuth 2.0. Originally written by [ArturKarbone](https://github.com/ArturKarbone), up to date as of Feb 13, 2014 for iHealth's API.
 
+This strategy connects with iHealth using Ommniauth and OAuth 2.0.
 You can apply for API access on iHealth's developer website [here](http://developer.ihealthlabs.com).
 
 
 ## Installing
 
-Add to your `Gemfile`:
+Add the gem to your `Gemfile`...
 
 ```ruby
-gem 'omniauth-ihealth', :git=>'https://github.com/hspinks/omniauth-ihealth.git'
+gem 'omniauth-ihealth', git: 'https://github.com/dukedigitalhealth/omniauth-ihealth'
 ```
 
-Then `bundle install`.
+... and then run `bundle install`.
+
 
 ## Usage
 
-`OmniAuth::Strategies::IHealth` is a Rack middleware. Read the OmniAuth docs for detailed instructions: https://github.com/intridea/omniauth
+`OmniAuth::Strategies::IHealth` is Rack middleware. Read the OmniAuth docs for detailed instructions: https://github.com/intridea/omniauth
 
 Here's a quick example, adding the middleware to a Rails app in `config/initializers/omniauth.rb`:
 
@@ -33,9 +32,13 @@ end
 
 You can configure several options, which you pass in to the `provider` method via a `Hash`:
 
-* `scope`: A list of permissions you want to request from the user, separated by spaces. Options are `OpenApiUserInfo`, `OpenApiActivity`, `OpenApiBG`, `OpenApiBP`, `OpenApiSleep`, `OpenApiSpO2`, and `OpenApiWeight`. You must include `OpenApiUserInfo`. Defaults to `OpenApiUserInfo`.
+* `scope`: A list of permissions you want to request from the user, separated by spaces.
+The available options are `OpenApiUserInfo`, `OpenApiActivity`, `OpenApiBG`, `OpenApiBP`, `OpenApiSleep`, `OpenApiSpO2`, and `OpenApiWeight`. You must include `OpenApiUserInfo`. Defaults to `OpenApiUserInfo`.
+
 * `sc`: The Serial Code for the client. You can find this on the developer detail page on iHealth's website [here](http://developer.ihealthlabs.com/developerdetailpage.htm).
+
 * `sv`: The SV value listed for OpenApiUserInfo on the [developer detail page](http://developer.ihealthlabs.com/developerdetailpage.htm).
+
 
 ## Auth Hash
 
@@ -80,3 +83,7 @@ Here's an example Auth Hash available in `request.env['omniauth.auth']`:
 	}
 }
 ```
+
+# Attributions
+
+The original version of this gem was written by [ArturKarbone](https://github.com/ArturKarbone).
